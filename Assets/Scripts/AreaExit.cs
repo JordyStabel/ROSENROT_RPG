@@ -1,26 +1,28 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class AreaExit : MonoBehaviour
-{
+public class AreaExit : MonoBehaviour {
     [SerializeField]
     private string areaToLoad;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    public string areaTransitionName;
 
+    public AreaEntrance areaEntrance;
+
+    // Start is called before the first frame update
+    void Start () {
+        areaEntrance.transitionName = areaTransitionName;
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update () {
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Player")
-            SceneManager.LoadScene(areaToLoad);
+    private void OnTriggerEnter2D (Collider2D other) {
+        if (other.tag == "Player") {
+            SceneManager.LoadScene (areaToLoad);
+            PlayerController.instance.areaTransitionName = areaTransitionName;
+        }
     }
 }

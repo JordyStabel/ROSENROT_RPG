@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
+public class PlayerController : MonoBehaviour {
     [SerializeField]
     private Rigidbody2D playerRigidbody;
 
@@ -13,26 +10,32 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Animator playerAnimator;
 
+    public static PlayerController instance;
+
+    public string areaTransitionName;
+
     // Start is called before the first frame update
-    void Start()
-    {
-        DontDestroyOnLoad(gameObject);
+    void Start () {
+        if (instance == null) {
+            instance = this;
+        } else {
+            Destroy (gameObject);
+        }
+        DontDestroyOnLoad (gameObject);
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update () {
         // Move the player
-        playerRigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * movementSpeed, Input.GetAxisRaw("Vertical") * movementSpeed);
+        playerRigidbody.velocity = new Vector2 (Input.GetAxisRaw ("Horizontal") * movementSpeed, Input.GetAxisRaw ("Vertical") * movementSpeed);
 
         // Set values for the animations
-        playerAnimator.SetFloat("moveX", playerRigidbody.velocity.x);
-        playerAnimator.SetFloat("moveY", playerRigidbody.velocity.y);
+        playerAnimator.SetFloat ("moveX", playerRigidbody.velocity.x);
+        playerAnimator.SetFloat ("moveY", playerRigidbody.velocity.y);
 
-        if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
-        {
-            playerAnimator.SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
-            playerAnimator.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
+        if (Input.GetAxisRaw ("Horizontal") == 1 || Input.GetAxisRaw ("Horizontal") == -1 || Input.GetAxisRaw ("Vertical") == 1 || Input.GetAxisRaw ("Vertical") == -1) {
+            playerAnimator.SetFloat ("lastMoveX", Input.GetAxisRaw ("Horizontal"));
+            playerAnimator.SetFloat ("lastMoveY", Input.GetAxisRaw ("Vertical"));
         }
     }
 }
