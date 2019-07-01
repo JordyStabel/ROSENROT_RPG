@@ -65,7 +65,7 @@ public class CharacterStats : MonoBehaviour {
                 maxHP = Mathf.FloorToInt (maxHP * 1.05f);
                 currentHP = maxHP;
 
-                maxMP += mpLevelBonus[level];
+                maxMP += mpLevelBonus[level - 1];
                 currentMP = maxMP;
             }
         }

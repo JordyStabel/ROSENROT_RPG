@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 
-public class AreaEntrance : MonoBehaviour {
+public class AreaEntrance : MonoBehaviour
+{
     public string transitionName;
 
     // Start is called before the first frame update
-    void Start () {
-        if (transitionName == PlayerController.instance.areaTransitionName) {
+    void Start()
+    {
+        if (transitionName == PlayerController.instance.areaTransitionName)
+        {
             PlayerController.instance.transform.position = transform.position;
         }
-        UIFade.instance.FadeFromBlack ();
+        UIFade.instance.FadeFromBlack();
+        GameManager.instance.fadingBetweenAreas = false;
     }
 }
