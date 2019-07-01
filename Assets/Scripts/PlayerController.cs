@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour {
     private Vector3 bottomLeftLimit;
     private Vector3 topRightLimit;
 
+    public bool isAllowedToMove = true;
+
     // Awake is called before the first frame update
     void Awake () {
         if (instance == null) {
@@ -29,7 +31,11 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         // Move the player
-        playerRigidbody.velocity = new Vector2 (Input.GetAxisRaw ("Horizontal") * movementSpeed, Input.GetAxisRaw ("Vertical") * movementSpeed);
+        if (isAllowedToMove) {
+            playerRigidbody.velocity = new Vector2 (Input.GetAxisRaw ("Horizontal") * movementSpeed, Input.GetAxisRaw ("Vertical") * movementSpeed);
+        } else {
+            playerRigidbody.velocity = Vector2.zero;
+        }
 
         // Set values for the animations
         playerAnimator.SetFloat ("moveX", playerRigidbody.velocity.x);
@@ -39,8 +45,10 @@ public class PlayerController : MonoBehaviour {
             Input.GetAxisRaw ("Horizontal") == -1 ||
             Input.GetAxisRaw ("Vertical") == 1 ||
             Input.GetAxisRaw ("Vertical") == -1) {
-            playerAnimator.SetFloat ("lastMoveX", Input.GetAxisRaw ("Horizontal"));
-            playerAnimator.SetFloat ("lastMoveY", Input.GetAxisRaw ("Vertical"));
+            if (isAllowedToMove) {
+                playerAnimator.SetFloat ("lastMoveX", Input.GetAxisRaw ("Horizontal"));
+                playerAnimator.SetFloat ("lastMoveY", Input.GetAxisRaw ("Vertical"));
+            }
         }
 
         // Constrain the camera within the actual map
