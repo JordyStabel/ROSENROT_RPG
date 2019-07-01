@@ -50,6 +50,58 @@ MonoBehaviour:
   - {fileID: 2825799112071878889}
   - {fileID: 2825799111728644661}
   - {fileID: 2825799113655974060}
+  gameMenuOpen: 0
+  dialogActive: 0
+  fadingBetweenAreas: 0
+  itemsInIventory:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Health Potion
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Iron Sword
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Mana Potion
+  - 
+  - 
+  - 
+  numberOfItems: 00000000000000000000000000000000000000000000000000000000000000000500000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000
+  referenceItems:
+  - {fileID: 8440100094903749264, guid: a234983dd32937f488d08f3825c34500, type: 3}
+  - {fileID: 8784220294666242354, guid: c45a2744e7746b34fa23b773d86c1847, type: 3}
+  - {fileID: 8892157977695514189, guid: f96a9aeafbccf8c4eb62c43bb7e64482, type: 3}
+  - {fileID: 7865547293580139820, guid: ef3868e78c4027e42b3e8672b8fee3b9, type: 3}
+  - {fileID: 4720648203397162886, guid: a046cec58b0534a42b08bfa7abcefbb4, type: 3}
+  - {fileID: 1736529631821828042, guid: 36f97ee0b59484a47b33e2e86ea32112, type: 3}
 --- !u!1 &2825799111728644663
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f72b24978ade3a42a55716bcf4db5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: John Doe
+  characterName: Henk
   level: 3
   currentEXP: 534
   expToNextLevel: 
@@ -216,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f72b24978ade3a42a55716bcf4db5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: John Doe
+  characterName: Truus
   level: 3
   currentEXP: 534
   expToNextLevel: 

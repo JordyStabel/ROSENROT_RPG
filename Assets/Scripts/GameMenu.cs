@@ -17,6 +17,8 @@ public class GameMenu : MonoBehaviour
 
     public Image statImage;
 
+    public ItemButton[] itemButtons;
+
     // Update is called once per frame
     void Update()
     {
@@ -116,5 +118,27 @@ public class GameMenu : MonoBehaviour
         statArmorPower.text = characterStats[index].armorPower.ToString();
         statExp.text = (characterStats[index].expToNextLevel[characterStats[index].level] - characterStats[index].currentEXP).ToString();
         statImage.sprite = characterStats[index].characterImage;
+    }
+
+    public void ShowItems()
+    {
+        GameManager.instance.SortItems();
+
+        for (int i = 0; i < itemButtons.Length; i++)
+        {
+            itemButtons[i].buttonIndex = i;
+
+            if (GameManager.instance.itemsInIventory[i] != "")
+            {
+                itemButtons[i].buttonImage.gameObject.SetActive(true);
+                itemButtons[i].buttonImage.sprite = GameManager.instance.GetItemReference(GameManager.instance.itemsInIventory[i]).itemSprite;
+                itemButtons[i].amountText.text = GameManager.instance.numberOfItems[i].ToString();
+            }
+            else
+            {
+                itemButtons[i].buttonImage.gameObject.SetActive(false);
+                itemButtons[i].amountText.text = "";
+            }
+        }
     }
 }
