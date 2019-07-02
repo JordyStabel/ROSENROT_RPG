@@ -6,11 +6,13 @@ public class GameManager : MonoBehaviour
 
     public CharacterStats[] characterStats;
 
-    public bool gameMenuOpen, dialogActive, fadingBetweenAreas;
+    public bool gameMenuOpen, dialogActive, fadingBetweenAreas, shopActive;
 
     public string[] itemsInIventory;
     public int[] numberOfItems;
     public Item[] referenceItems;
+
+    public int currentGold;
 
     // Awake is called before the first frame update
     void Awake()
@@ -29,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (gameMenuOpen || dialogActive || fadingBetweenAreas)
+        if (gameMenuOpen || dialogActive || fadingBetweenAreas || shopActive)
         {
             PlayerController.instance.isAllowedToMove = false;
         }

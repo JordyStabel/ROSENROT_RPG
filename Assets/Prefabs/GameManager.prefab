@@ -102,6 +102,7 @@ MonoBehaviour:
   - {fileID: 7865547293580139820, guid: ef3868e78c4027e42b3e8672b8fee3b9, type: 3}
   - {fileID: 4720648203397162886, guid: a046cec58b0534a42b08bfa7abcefbb4, type: 3}
   - {fileID: 1736529631821828042, guid: 36f97ee0b59484a47b33e2e86ea32112, type: 3}
+  currentGold: 100
 --- !u!1 &2825799111728644663
 GameObject:
   m_ObjectHideFlags: 0

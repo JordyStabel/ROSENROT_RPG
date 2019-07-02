@@ -21,10 +21,24 @@ public class ItemButton : MonoBehaviour
 
     public void Click()
     {
-
-        if (GameManager.instance.itemsInIventory[buttonIndex] != "")
+        if (GameMenu.instance.gameMenu.activeInHierarchy)
         {
-            GameMenu.instance.SelectItem(GameManager.instance.GetItemReference(GameManager.instance.itemsInIventory[buttonIndex]));
+            if (GameManager.instance.itemsInIventory[buttonIndex] != "")
+            {
+                GameMenu.instance.SelectItem(GameManager.instance.GetItemReference(GameManager.instance.itemsInIventory[buttonIndex]));
+            }
+        }
+        if (Shop.instance.shopMenu.activeInHierarchy)
+        {
+            if (Shop.instance.buyMenu.activeInHierarchy)
+            {
+                Shop.instance.SelectBuyItem(GameManager.instance.GetItemReference(Shop.instance.itemsForSale[buttonIndex]));
+            }
+
+            if (Shop.instance.sellMenu.activeInHierarchy)
+            {
+                Shop.instance.SelectSellItem(GameManager.instance.GetItemReference(GameManager.instance.itemsInIventory[buttonIndex]));
+            }
         }
     }
 }

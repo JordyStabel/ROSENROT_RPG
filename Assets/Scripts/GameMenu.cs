@@ -25,6 +25,8 @@ public class GameMenu : MonoBehaviour
     public GameObject itemCharacterChoiceMenu;
     public Text[] itemCharacterChoiceNames;
 
+    public Text goldAmount;
+
     public static GameMenu instance;
 
     void Start()
@@ -81,6 +83,8 @@ public class GameMenu : MonoBehaviour
                 characterStatHolder[i].SetActive(false);
             }
         }
+
+        goldAmount.text = $"{GameManager.instance.currentGold} G";
     }
 
     public void ToggleWindow(int windowIndex)
