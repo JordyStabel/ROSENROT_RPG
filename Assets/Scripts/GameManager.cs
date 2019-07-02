@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+        SortItems();
     }
 
     void Update()
