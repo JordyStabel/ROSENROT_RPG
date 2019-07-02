@@ -18,4 +18,13 @@ public class ItemButton : MonoBehaviour
     {
 
     }
+
+    public void Click()
+    {
+
+        if (GameManager.instance.itemsInIventory[buttonIndex] != "")
+        {
+            GameMenu.instance.SelectItem(GameManager.instance.GetItemReference(GameManager.instance.itemsInIventory[buttonIndex]));
+        }
+    }
 }

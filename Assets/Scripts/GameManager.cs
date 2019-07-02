@@ -26,13 +26,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (gameMenuOpen || dialogActive || fadingBetweenAreas)
@@ -42,6 +35,18 @@ public class GameManager : MonoBehaviour
         else
         {
             PlayerController.instance.isAllowedToMove = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            AddItem("Iron Armor");
+            AddItem("henk");
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            RemoveItem("Iron Armor");
+            AddItem("henk");
         }
     }
 
@@ -81,5 +86,77 @@ public class GameManager : MonoBehaviour
                 }
             }
         };
+    }
+
+    public void AddItem(string itemName)
+    {
+        int newItemIndex = 0;
+        bool foundSpace = false;
+        bool itemValid = false;
+
+        for (int i = 0; i < referenceItems.Length; i++)
+        {
+            if (referenceItems[i].name == itemName)
+            {
+                itemValid = true;
+                break;
+            }
+        }
+
+        if (itemValid)
+        {
+            for (int i = 0; i < itemsInIventory.Length; i++)
+            {
+                if (itemsInIventory[i] == "" || itemsInIventory[i] == itemName)
+                {
+                    newItemIndex = i;
+                    foundSpace = true;
+                    break;
+                }
+            }
+
+            if (foundSpace)
+            {
+                itemsInIventory[newItemIndex] = itemName;
+                numberOfItems[newItemIndex]++;
+            }
+        }
+        else
+        {
+            Debug.LogError(itemName + " Invalid item!");
+        }
+        GameMenu.instance.ShowItems();
+    }
+
+    public void RemoveItem(string itemName)
+    {
+        bool foundItem = false;
+        int itemIndex = 0;
+
+        for (int i = 0; i < itemsInIventory.Length; i++)
+        {
+            if (itemsInIventory[i] == itemName)
+            {
+                foundItem = true;
+                itemIndex = i;
+                break;
+            }
+        }
+
+        if (foundItem)
+        {
+            numberOfItems[itemIndex]--;
+
+            if (numberOfItems[itemIndex] <= 0)
+            {
+                itemsInIventory[itemIndex] = "";
+            }
+
+            GameMenu.instance.ShowItems();
+        }
+        else
+        {
+            Debug.LogError(itemName + " Not found!");
+        }
     }
 }

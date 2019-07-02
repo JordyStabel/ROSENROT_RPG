@@ -18,8 +18,28 @@ public class GameMenu : MonoBehaviour
     public Image statImage;
 
     public ItemButton[] itemButtons;
+    public string selectedItem;
+    public Item activeItem;
+    public Text itemName, itemDescription, useButtonText;
 
-    // Update is called once per frame
+    public GameObject itemCharacterChoiceMenu;
+    public Text[] itemCharacterChoiceNames;
+
+    public static GameMenu instance;
+
+    void Start()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Update()
     {
         if (Input.GetButtonDown("Fire2"))
@@ -78,6 +98,7 @@ public class GameMenu : MonoBehaviour
                 windows[i].SetActive(false);
             }
         }
+        itemCharacterChoiceMenu.SetActive(false);
     }
 
     public void CloseMenu()
@@ -89,6 +110,7 @@ public class GameMenu : MonoBehaviour
 
         gameMenu.SetActive(false);
         GameManager.instance.gameMenuOpen = false;
+        itemCharacterChoiceMenu.SetActive(false);
     }
 
     public void OpenStats()
@@ -112,9 +134,9 @@ public class GameMenu : MonoBehaviour
         statMP.text = $"{characterStats[index].currentMP}/{characterStats[index].maxMP}";
         statStength.text = characterStats[index].strength.ToString();
         statDefense.text = characterStats[index].defense.ToString();
-        statWeaponEquipped.text = characterStats[index].equippedWeapon != "" ? "None" : characterStats[index].equippedWeapon;
+        statWeaponEquipped.text = characterStats[index].equippedWeapon == "" ? "None" : characterStats[index].equippedWeapon;
         statWeaponPower.text = characterStats[index].weaponPower.ToString();
-        statArmorEquipped.text = characterStats[index].equippedArmor != "" ? "None" : characterStats[index].equippedArmor;
+        statArmorEquipped.text = characterStats[index].equippedArmor == "" ? "None" : characterStats[index].equippedArmor;
         statArmorPower.text = characterStats[index].armorPower.ToString();
         statExp.text = (characterStats[index].expToNextLevel[characterStats[index].level] - characterStats[index].currentEXP).ToString();
         statImage.sprite = characterStats[index].characterImage;
@@ -140,5 +162,52 @@ public class GameMenu : MonoBehaviour
                 itemButtons[i].amountText.text = "";
             }
         }
+    }
+
+    public void SelectItem(Item item)
+    {
+        activeItem = item;
+
+        if (item.isItem)
+        {
+            useButtonText.text = "Use";
+        }
+        else if (activeItem.isArmor || activeItem.isWeapon)
+        {
+            useButtonText.text = "Equip";
+        }
+
+        itemName.text = activeItem.name;
+        itemDescription.text = activeItem.description;
+    }
+
+    public void DiscardItem()
+    {
+        if (activeItem != null)
+        {
+            GameManager.instance.RemoveItem(activeItem.name);
+        }
+    }
+
+    public void OpenItemCharacterChoice()
+    {
+        itemCharacterChoiceMenu.SetActive(true);
+
+        for (int i = 0; i < itemCharacterChoiceNames.Length; i++)
+        {
+            itemCharacterChoiceNames[i].text = GameManager.instance.characterStats[i].characterName;
+            itemCharacterChoiceNames[i].transform.parent.gameObject.SetActive(GameManager.instance.characterStats[i].gameObject.activeInHierarchy);
+        }
+    }
+
+    public void CloseItemCharacterChoice()
+    {
+        itemCharacterChoiceMenu.SetActive(false);
+    }
+
+    public void UseItem(int selectedCharacter)
+    {
+        activeItem.Use(selectedCharacter);
+        CloseItemCharacterChoice();
     }
 }
