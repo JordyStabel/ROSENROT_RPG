@@ -8,6 +8,9 @@ public class EssentialsLoader : MonoBehaviour
     private GameObject player;
 
     [SerializeField]
+    private GameObject audioManager;
+
+    [SerializeField]
     private GameObject gameManager;
 
     // Awake is called before the first frame update
@@ -20,6 +23,10 @@ public class EssentialsLoader : MonoBehaviour
         if (PlayerController.instance == null)
         {
             Instantiate(player);
+        }
+        if (AudioManager.instance == null)
+        {
+            Instantiate(audioManager);
         }
         if (GameManager.instance == null)
         {

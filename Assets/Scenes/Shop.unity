@@ -5672,13 +5672,18 @@ PrefabInstance:
     - target: {fileID: 62769316227925123, guid: d2f7ca092ce70a1459ec9ba46b748d85,
         type: 3}
       propertyPath: orthographic size
-      value: 4
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 62769316227925121, guid: d2f7ca092ce70a1459ec9ba46b748d85,
         type: 3}
       propertyPath: map
       value: 
       objectReference: {fileID: 117526905}
+    - target: {fileID: 62769316227925121, guid: d2f7ca092ce70a1459ec9ba46b748d85,
+        type: 3}
+      propertyPath: musicIndex
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2f7ca092ce70a1459ec9ba46b748d85, type: 3}
 --- !u!1 &1154146005
